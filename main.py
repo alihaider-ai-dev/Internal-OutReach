@@ -349,8 +349,7 @@ def main():
                     del st.session_state['analysis_results']
                     st.rerun()
                     
-            else:
-                st.error("❌ Failed to fetch website content. Please check the URL and try again.")
+            
                 
         except Exception as e:
             st.error(f"❌ Error during analysis: {str(e)}")
