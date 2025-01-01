@@ -281,13 +281,10 @@ def main():
     
     if submit_button and website_url:
         try:
-            if not st.session_state.website_content:
                 with st.spinner("🌐 Fetching website content..."):
                     st.session_state.website_content = get_text_using_scrape_do(website_url, max_pages)
             
-            if st.session_state.website_content:
-                if not st.session_state.analysis_results:
-                    with st.spinner("🤖 Analyzing use cases..."):
+                with st.spinner("🤖 Analyzing use cases..."):
                         analyzer = UseCaseAnalyzer()
                         st.session_state.analysis_results = analyzer.analyze_usecases(
                             website_content=st.session_state.website_content, 
