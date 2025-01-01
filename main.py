@@ -274,11 +274,9 @@ def main():
     
     # Main form
     with st.form("analysis_form"):
-        col1, col2 = st.columns([3, 1])
-        with col1:
+        
             website_url = st.text_input("🌐 Website URL", placeholder="https://example.com")
-        with col2:
-            submit_button = st.form_submit_button("🔍 Analyze Website")
+            submit_button = st.form_submit_button("🔍 Analyze Website",use_container_width=True)
     
     if submit_button and website_url:
         try:
