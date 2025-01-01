@@ -348,9 +348,9 @@ def main():
                 
                 # Reset button
                 if st.button("🔄 Start New Analysis"):
-                    st.session_state.website_content = None
-                    st.session_state.analysis_results = None
-                    st.experimental_rerun()
+                    del st.session_state['website_content']
+                    del st.session_state['analysis_results']
+                    st.rerun()
                     
             else:
                 st.error("❌ Failed to fetch website content. Please check the URL and try again.")
