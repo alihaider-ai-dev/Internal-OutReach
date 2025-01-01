@@ -43,11 +43,11 @@ class UseCaseAnalyzer:
                             },
                             "problem": {
                                 "type": "string",
-                                "description": "Description of the problem being addressed"
+                                "description": "Detailed Description of the problem being addressed"
                             },
                             "ai_solution": {
                                 "type": "string",
-                                "description": "Proposed AI-based solution"
+                                "description": "Deatiled Proposed AI-based solution"
                             },
                             "feasibility": {
                                 "type": "object",
@@ -114,6 +114,7 @@ class UseCaseAnalyzer:
         4. Focus on practical, implementable solutions
         5. Provide quantitative metrics where possible
         6. Consider technical feasibility and data requirements
+    
         """
 
         query = f"""
