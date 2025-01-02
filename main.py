@@ -97,7 +97,7 @@ class UseCaseAnalyzer:
             "required": ["use_cases"]
         }
 
-    def analyze_usecases(self, website_content: str, context: Optional[str] = None) -> Dict[str, Any]:
+    def analyze_usecases(self, website_content: str,number_of_usecases, context: Optional[str] = None) -> Dict[str, Any]:
         """Analyze website content to identify and structure use cases"""
         tools = [{
             "name": "get_usecases",
@@ -105,8 +105,9 @@ class UseCaseAnalyzer:
             "input_schema": self.get_usecase_schema()
         }]
 
-        system_prompt = """
+        system_prompt = f"""
         You are a use case analysis expert. Your task is to:
+        
         1. Analyze the provided website content
         2. Identify prominent use cases across different domains
         3. Structure each use case with detailed problem description, AI solution approach,
@@ -114,6 +115,7 @@ class UseCaseAnalyzer:
         4. Focus on practical, implementable solutions
         5. Provide quantitative metrics where possible
         6. Consider technical feasibility and data requirements
+        7. Generate Only {number_of_usecases} usecsaes.
     
         """
 
@@ -125,6 +127,8 @@ class UseCaseAnalyzer:
         {f'<additional_context>{context}</additional_context>' if context else ''}
         
         Analyze the content to identify and structure key use cases.
+        Return Only {number_of_usecases} usecases.
+        
         """
 
         try:
@@ -277,6 +281,7 @@ def main():
     with st.form("analysis_form"):
         
             website_url = st.text_input("🌐 Website URL", placeholder="https://example.com")
+            number_of_usecases = st.slider("Number of Usecases to Generate", 1, 10)
             submit_button = st.form_submit_button("🔍 Analyze Website",use_container_width=True)
     
     if submit_button and website_url:
@@ -287,7 +292,7 @@ def main():
                 with st.spinner("🤖 Analyzing use cases..."):
                         analyzer = UseCaseAnalyzer()
                         st.session_state.analysis_results = analyzer.analyze_usecases(
-                            website_content=st.session_state.website_content, 
+                            website_content=st.session_state.website_content, number_of_usecases
                             context=usecases
                         )
                 
