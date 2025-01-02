@@ -97,7 +97,7 @@ class UseCaseAnalyzer:
             "required": ["use_cases"]
         }
 
-    def analyze_usecases(self, website_content: str,number_of_usecases, context: Optional[str] = None) -> Dict[str, Any]:
+    def analyze_usecases(self, website_content: str,number_of_usecases:int, context: Optional[str] = None) -> Dict[str, Any]:
         """Analyze website content to identify and structure use cases"""
         tools = [{
             "name": "get_usecases",
