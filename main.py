@@ -291,10 +291,7 @@ def main():
             
                 with st.spinner("🤖 Analyzing use cases..."):
                         analyzer = UseCaseAnalyzer()
-                        st.session_state.analysis_results = analyzer.analyze_usecases(
-                            website_content=st.session_state.website_content, number_of_usecases,
-                            context=usecases
-                        )
+                        st.session_state.analysis_results = analyzer.analyze_usecases( website_content=st.session_state.website_content, number_of_usecases,context=usecases )
                 
                 # Convert results to DataFrame
                 df = json_to_usecase_dataframe(st.session_state.analysis_results)
